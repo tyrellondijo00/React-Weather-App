@@ -7,7 +7,27 @@ import Sidebar from "./components/Sidebar";
 import "./App.css";
 
 function App() {
-  const { activeMenu } = useStateContext();
+  const { activeMenu, setActiveMenu, screenSize, setScreenSize } =
+    useStateContext();
+
+  useEffect(() => {
+    const handleResize = () => setScreenSize(window.innerWidth);
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (screenSize <= 480) {
+      setActiveMenu(false);
+    } else {
+      setActiveMenu(true);
+    }
+  }, [screenSize]);
+
   return (
     <Router>
       <div className="flex relative dark:bg-main-dark-bg">
