@@ -6,4 +6,17 @@
   z-index: 999;
 }
 
+.navbar {
+  z-index: 10000;
+}
+@media  screen and (max-width:800px) {
+  .sidebar{
+    z-index: 10000000;
+  }
+}
+
+.country-city{
+  height: calc(100% - 48px);
+}
+
 

@@ -12,7 +12,7 @@ function App() {
     <Router>
       <div className="flex relative dark:bg-main-dark-bg">
         {activeMenu ? (
-          <div className="w-72 fixed sidebar sidebar h-screen">
+          <div className="w-72 fixed sidebar sidebar h-screen border-r border-slate-200">
             <Sidebar />
           </div>
         ) : (
@@ -21,7 +21,11 @@ function App() {
           </div>
         )}
 
-        <div className="fixed md:static bg-blue navbar w-full navbar">
+        <div
+          className={`fixed md:static bg-blue navbar w-full navbar ${
+            activeMenu ? "md:ml-72" : "flex-2 md:ml-20"
+          }`}
+        >
           <Navbar />
         </div>
       </div>

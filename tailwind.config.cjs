@@ -10,6 +10,11 @@ module.exports = {
       display: ['Montserrat', 'sans-serif'],
       body: ['Montserrat', 'sans-serif'],
     },
+
+    backdropFilter: {
+      'none': 'none',
+      'blur': 'blur(20px)',
+    },
     extend: {
       backgroundColor: {
         'main-bg': '#FAFBFB',
