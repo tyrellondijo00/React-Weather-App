@@ -42,7 +42,7 @@ function App() {
         )}
 
         <div
-          className={`fixed md:static bg-blue navbar w-full navbar ${
+          className={`fixed md:static  navbar w-full navbar ${
             activeMenu ? "md:ml-72" : "flex-2 md:ml-20"
           }`}
         >
