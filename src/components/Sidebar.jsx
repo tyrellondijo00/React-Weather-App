@@ -27,10 +27,14 @@ const Sidebar = () => {
       </div>
 
       <div className=" text-black basis-1/2 border-b-2 border-lime-400">
-        <div className={`h-12 px-4 inline-flex mt-4 `}>
+        <div
+          className={`h-12 px-4 inline-flex mt-4 ${
+            !activeMenu && "px-5 items-center"
+          } `}
+        >
           <WiDayRainWind
-            className={`bg-lime-400 text-4xl rounded cursor-pointer block float-left border border-black ${
-              activeMenu ? "mr-2 p-1" : "p-1"
+            className={`bg-lime-400 cursor-pointer block float-left border-black border ${
+              activeMenu ? "mr-2 p-1 text-4xl rounded" : "text-5xl text-end p-1"
             }`}
           />
           <h1
@@ -43,18 +47,20 @@ const Sidebar = () => {
         </div>
 
         <div
-          className={`h-14 px-4 flex flex-col justify-center bg-gray-100 pt-6 ${
-            activeMenu && "items-center"
+          className={`h-14 px-4 flex flex-col justify-center pt-6 ${
+            !activeMenu && "items-center"
           }`}
         >
           <div
-            className={`flex items-center rounded-md bg-slate-50 py-2 border border-black  ${
-              activeMenu ? "px-4" : "px-2 bg-red"
+            className={`flex items-center rounded-md py-2 ${
+              activeMenu
+                ? "px-4 border border-black bg-slate-50"
+                : "px-2 bg-transparent"
             }`}
           >
             <FaSearch
-              className={`text-lime-400 text-lg block cursor-pointer float-left ${
-                activeMenu ? "mr-2" : "mr-0 "
+              className={`text-lime-400 block cursor-pointer float-left ${
+                activeMenu ? "mr-2 text-lg" : "mr-0 text-2xl"
               }`}
             />
 
@@ -73,14 +79,29 @@ const Sidebar = () => {
             activeMenu ? "px-4" : "px-0"
           }`}
         >
-          <div className="text-center py-4 font-semi-bold text-black text-4xl border-t border-l border-r rounded-t-md bg-lime-400 border-black">
-            <h1 className={`text-black ${!activeMenu && "scale-0"}`}>
-              Jo'burg
-            </h1>
+          <div
+            className={`text-center py-4 font-semi-bold text-black text-4xl bg-lime-400 ${
+              activeMenu
+                ? "border-black border-t border-l border-r rounded-t-md"
+                : "border-0"
+            }`}
+          >
+            <h1 className={`text-black ${!activeMenu && "hidden"}`}>Jo'burg</h1>
+            <h1 className={`text-black ${activeMenu && "hidden"}`}>JBG</h1>
           </div>
 
-          <div className="text-lg text-right font-medium pr-5 py-2 border-b border-l border-r text-black rounded-b-md bg-lime-400 border-black">
-            <h3>South Africa</h3>
+          <div
+            className={`text-lg font-medium py-2 text-black bg-lime-400 ${
+              activeMenu
+                ? "border-black border-b border-l border-r rounded-b-md text-right pr-5"
+                : "border-0 text-center"
+            }`}
+          >
+            <h3 className={`text-black ${!activeMenu && "hidden"}`}>
+              South Africa
+            </h3>
+
+            <h3 className={`text-black ${activeMenu && "hidden"}`}>RSA</h3>
           </div>
         </div>
       </div>
