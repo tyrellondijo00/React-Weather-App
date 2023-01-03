@@ -18,7 +18,7 @@ const Sidebar = () => {
     <div className="h-screen flex flex-col relative bg-slate-100">
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 circle">
         <h1
-          className={`circle-font text-black font-semibold bg-lime-400 p-4 ${
+          className={`circle-font temp text-black font-semibold bg-lime-400 p-4 ${
             activeMenu ? "text-5xl p-4" : "text-3xl p-2"
           }`}
         >
@@ -38,7 +38,7 @@ const Sidebar = () => {
             }`}
           />
           <h1
-            className={`text-black origin-left font-medium text-2xl ${
+            className={`text-black logo origin-left font-medium text-2xl ${
               !activeMenu && "scale-0"
             }`}
           >
@@ -86,7 +86,9 @@ const Sidebar = () => {
                 : "border-0"
             }`}
           >
-            <h1 className={`text-black ${!activeMenu && "hidden"}`}>Jo'burg</h1>
+            <h1 className={`text-black city ${!activeMenu && "hidden"}`}>
+              NAIROBI
+            </h1>
             <h1 className={`text-black ${activeMenu && "hidden"}`}>JBG</h1>
           </div>
 
@@ -97,8 +99,8 @@ const Sidebar = () => {
                 : "border-0 text-center"
             }`}
           >
-            <h3 className={`text-black ${!activeMenu && "hidden"}`}>
-              South Africa
+            <h3 className={`text-black country ${!activeMenu && "hidden"}`}>
+              Kenya
             </h3>
 
             <h3 className={`text-black ${activeMenu && "hidden"}`}>RSA</h3>

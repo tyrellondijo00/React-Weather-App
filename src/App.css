@@ -1,3 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500;600;700;800&family=Gruppo&family=Megrim&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Overlock+SC&family=Oxanium:wght@200;300;400;500;600;700&family=Poiret+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Prosto+One&family=Unica+One&family=Wallpoet&family=Yatra+One&display=swap');
+
+/* font-family: 'Baloo Tamma 2', cursive;
+font-family: 'Gruppo', cursive;
+font-family: 'Megrim', cursive;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Overlock SC', cursive;
+font-family: 'Oxanium', cursive;
+font-family: 'Poiret One', cursive;
+font-family: 'Poppins', sans-serif;
+font-family: 'Prosto One', cursive;
+font-family: 'Unica One', cursive;
+font-family: 'Wallpoet', cursive;
+font-family: 'Yatra One', cursive; */
+
+.city, .country{
+  font-family: 'Oxanium', cursive;
+}
+
+.logo{
+  font-family: 'Prosto One', cursive;
+}
+
+.temp{
+  font-family: 'Montserrat', sans-serif;
+}
+
 .circle-font{
   border-radius: 50%;
 }

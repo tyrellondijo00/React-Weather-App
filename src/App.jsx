@@ -7,6 +7,7 @@ import Sidebar from "./components/Sidebar";
 import "./App.css";
 
 function App() {
+  // const url = `https://api.openweathermap.org/data/2.5/weather?q=nairobi&appid=e9f46ddf13344ba6fe404b5323503639&units=metric`;
   const { activeMenu, setActiveMenu, screenSize, setScreenSize } =
     useStateContext();
 
