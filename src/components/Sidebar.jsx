@@ -10,22 +10,54 @@ import { useStateContext } from "../contexts/ContextProvider";
 // CONTEXT API
 
 import "../App.css";
+import axios from "axios";
 
 const Sidebar = () => {
+  const [location, setLocation] = useState(null);
+
+  const [data, setData] = useState({
+    main: {
+      temp: "20",
+    },
+    sys: {
+      country: "KE",
+    },
+    name: "Nairobi",
+  });
+
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=e9f46ddf13344ba6fe404b5323503639&units=metric`;
+
+  const searchLocation = (event) => {
+    if (event.key === "Enter") {
+      axios.get(url).then((response) => {
+        setData({ ...data, ...response.data });
+      });
+    }
+  };
+
   const { activeMenu } = useStateContext();
 
   return (
     <div className="h-screen flex flex-col relative bg-slate-100">
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 circle">
-        <h1
-          className={`circle-font temp text-black font-semibold bg-lime-400 p-4 ${
-            activeMenu ? "text-5xl p-4" : "text-3xl p-2"
-          }`}
-        >
-          17°
-        </h1>
+        {location === null ? (
+          <h1
+            className={`circle-font temp text-black font-semibold bg-lime-400 p-4 rounded-full ${
+              activeMenu ? "text-xl p-4" : "text-3xl p-2"
+            }`}
+          >
+            {data.main.temp}
+          </h1>
+        ) : (
+          <h1
+            className={`circle-font temp text-black font-semibold bg-lime-400 p-4 rounded-full ${
+              activeMenu ? "text-xl p-4" : "text-3xl p-2"
+            }`}
+          >
+            {data.main.temp}
+          </h1>
+        )}
       </div>
-
       <div className=" text-black basis-1/2 border-b-2 border-lime-400">
         <div
           className={`h-12 px-4 inline-flex mt-4 ${
@@ -65,8 +97,11 @@ const Sidebar = () => {
             />
 
             <input
-              type={"search"}
+              type="text"
               placeholder="Search"
+              value={location || ""}
+              onChange={(event) => setLocation(event.target.value)}
+              onKeyPress={searchLocation}
               className={`text-base bg-transparent w-full text-black focus:outline-none ${
                 !activeMenu && "hidden"
               }`}
@@ -87,7 +122,7 @@ const Sidebar = () => {
             }`}
           >
             <h1 className={`text-black city ${!activeMenu && "hidden"}`}>
-              NAIROBI
+              {data.name}
             </h1>
             <h1 className={`text-black ${activeMenu && "hidden"}`}>JBG</h1>
           </div>
@@ -100,14 +135,13 @@ const Sidebar = () => {
             }`}
           >
             <h3 className={`text-black country ${!activeMenu && "hidden"}`}>
-              Kenya
+              {data.sys.country}
             </h3>
 
             <h3 className={`text-black ${activeMenu && "hidden"}`}>RSA</h3>
           </div>
         </div>
       </div>
-
       <div className=" text-white basis-1/2 border-t-2 border-lime-400 bg-slate-100"></div>
     </div>
   );
