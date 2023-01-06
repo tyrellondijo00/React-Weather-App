@@ -5,6 +5,10 @@ import { WiDayRainWind } from "react-icons/wi";
 import { FaExpandAlt, FaSearch } from "react-icons/fa";
 // ICONS
 
+// COMPONENTS
+import WeatherIcon from "./Icon";
+// COMPONENTS
+
 // CONTEXT API
 import { useStateContext } from "../contexts/ContextProvider";
 // CONTEXT API
@@ -20,17 +24,28 @@ const Sidebar = () => {
       temp: "20",
     },
     sys: {
-      country: "KE",
+      country: "COUNTRY",
     },
-    name: "Nairobi",
+    name: "City Name",
+    coord: {
+      lon: "00.00",
+      lat: "00.00",
+    },
+    weather: {
+      icon: "",
+    },
   });
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=e9f46ddf13344ba6fe404b5323503639&units=metric`;
+  const [iconId, seticonId] = useState("");
+
+  // const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=e9f46ddf13344ba6fe404b5323503639&units=metric`;
 
   const searchLocation = (event) => {
     if (event.key === "Enter") {
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=e9f46ddf13344ba6fe404b5323503639&units=metric`;
       axios.get(url).then((response) => {
         setData({ ...data, ...response.data });
+        seticonId(response.data.weather[0].icon);
       });
     }
   };
@@ -46,7 +61,7 @@ const Sidebar = () => {
               activeMenu ? "text-xl p-4" : "text-3xl p-2"
             }`}
           >
-            {data.main.temp}
+            <WeatherIcon iconId={iconId} />
           </h1>
         ) : (
           <h1
@@ -54,10 +69,11 @@ const Sidebar = () => {
               activeMenu ? "text-xl p-4" : "text-3xl p-2"
             }`}
           >
-            {data.main.temp}
+            <WeatherIcon iconId={iconId} />
           </h1>
         )}
       </div>
+
       <div className=" text-black basis-1/2 border-b-2 border-lime-400">
         <div
           className={`h-12 px-4 inline-flex mt-4 ${
@@ -115,30 +131,40 @@ const Sidebar = () => {
           }`}
         >
           <div
-            className={`text-center py-4 font-semi-bold text-black text-4xl bg-lime-400 ${
+            className={` py-4 font-semi-bold  text-black text-4xl bg-lime-400 ${
               activeMenu
                 ? "border-black border-t border-l border-r rounded-t-md"
                 : "border-0"
             }`}
           >
-            <h1 className={`text-black city ${!activeMenu && "hidden"}`}>
+            <h1
+              className={`text-black city text-center ${
+                !activeMenu && "hidden"
+              }`}
+            >
               {data.name}
             </h1>
             <h1 className={`text-black ${activeMenu && "hidden"}`}>JBG</h1>
           </div>
 
           <div
-            className={`text-lg font-medium py-2 text-black bg-lime-400 ${
+            className={`text-lg font-medium py-2 text-black bg-lime-400 flex justify-between ${
               activeMenu
                 ? "border-black border-b border-l border-r rounded-b-md text-right pr-5"
                 : "border-0 text-center"
             }`}
           >
-            <h3 className={`text-black country ${!activeMenu && "hidden"}`}>
-              {data.sys.country}
-            </h3>
+            <div className="cord pl-4">
+              <h5 className="text-sm">long : {data.coord.lon}</h5>
+              <h5 className="text-sm">lat : {data.coord.lat}</h5>
+            </div>
+            <div>
+              <h3 className={`text-black country ${!activeMenu && "hidden"}`}>
+                {data.sys.country}
+              </h3>
 
-            <h3 className={`text-black ${activeMenu && "hidden"}`}>RSA</h3>
+              <h3 className={`text-black ${activeMenu && "hidden"}`}>RSA</h3>
+            </div>
           </div>
         </div>
       </div>
