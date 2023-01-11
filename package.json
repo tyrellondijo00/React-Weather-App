@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@syncfusion/ej2-react-popups": "^20.4.43",
     "axios": "^1.2.2",
     "react": "^18.2.0",
     "react-accessible-accordion": "^5.0.0",

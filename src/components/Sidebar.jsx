@@ -50,40 +50,46 @@ const Sidebar = () => {
     }
   };
 
-  const { activeMenu } = useStateContext();
+  const { activeMenu, currentColor } = useStateContext();
 
   return (
     <div className="h-screen flex flex-col relative bg-slate-100">
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 circle">
         {location === null ? (
           <h1
-            className={`circle-font temp text-black font-semibold bg-lime-400 p-4 rounded-full ${
+            className={`circle-font temp text-black font-semibold p-4 rounded-full ${
               activeMenu ? "text-xl p-4" : "text-3xl p-2"
             }`}
+            style={{ background: currentColor }}
           >
             <WeatherIcon iconId={iconId} />
           </h1>
         ) : (
           <h1
-            className={`circle-font temp text-black font-semibold bg-lime-400 p-4 rounded-full ${
+            className={`circle-font temp text-black font-semibold p-4 rounded-full ${
               activeMenu ? "text-xl p-4" : "text-3xl p-2"
             }`}
+            style={{ background: currentColor }}
           >
             <WeatherIcon iconId={iconId} />
           </h1>
         )}
       </div>
 
-      <div className=" text-black basis-1/2 border-b-2 border-lime-400">
+      <div
+        className=" text-black basis-1/2 border-b-2"
+        style={{ borderColor: currentColor }}
+      >
         <div
           className={`h-12 px-4 inline-flex mt-4 ${
             !activeMenu && "px-5 items-center"
           } `}
         >
           <WiDayRainWind
-            className={`bg-lime-400 cursor-pointer block float-left border-black border ${
+            className={`cursor-pointer block float-left border-black border ${
               activeMenu ? "mr-2 p-1 text-4xl rounded" : "text-5xl text-end p-1"
             }`}
+            style={{ background: currentColor }}
           />
           <h1
             className={`text-black logo origin-left font-medium text-2xl ${
@@ -107,9 +113,10 @@ const Sidebar = () => {
             }`}
           >
             <FaSearch
-              className={`text-lime-400 block cursor-pointer float-left ${
+              className={`block cursor-pointer float-left ${
                 activeMenu ? "mr-2 text-lg" : "mr-0 text-2xl"
               }`}
+              style={{ color: currentColor }}
             />
 
             <input
@@ -131,11 +138,12 @@ const Sidebar = () => {
           }`}
         >
           <div
-            className={` py-4 font-semi-bold  text-black text-4xl bg-lime-400 ${
+            className={` py-4 font-semi-bold  text-black text-4xl ${
               activeMenu
                 ? "border-black border-t border-l border-r rounded-t-md"
                 : "border-0"
             }`}
+            style={{ background: currentColor }}
           >
             <h1
               className={`text-black city text-center ${
@@ -148,11 +156,12 @@ const Sidebar = () => {
           </div>
 
           <div
-            className={`text-lg font-medium py-2 text-black bg-lime-400 flex justify-between ${
+            className={`text-lg font-medium py-2 text-black flex justify-between ${
               activeMenu
                 ? "border-black border-b border-l border-r rounded-b-md text-right pr-5"
                 : "border-0 text-center"
             }`}
+            style={{ background: currentColor }}
           >
             <div className="cord pl-4">
               <h5 className="text-sm">long : {data.coord.lon}</h5>
@@ -168,7 +177,7 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-      <div className=" text-white basis-1/2 border-t-2 border-lime-400 bg-slate-100"></div>
+      <div className=" text-white basis-1/2 border-t-2 bg-slate-100"></div>
     </div>
   );
 };
