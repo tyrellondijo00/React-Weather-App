@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500;600;700;800&family=Gruppo&family=Megrim&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Overlock+SC&family=Oxanium:wght@200;300;400;500;600;700&family=Poiret+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Prosto+One&family=Unica+One&family=Wallpoet&family=Yatra+One&display=swap');
-
+/* .zagadat{
+  background: black;
+} */
 .city, .country, .cord{
   font-family: 'Oxanium', cursive;
 }

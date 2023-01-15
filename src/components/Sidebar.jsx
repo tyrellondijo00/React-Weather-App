@@ -53,7 +53,7 @@ const Sidebar = () => {
   const { activeMenu, currentColor } = useStateContext();
 
   return (
-    <div className="h-screen flex flex-col relative bg-slate-200 dark:bg-slate-900">
+    <div className="h-screen flex flex-col relative bg-slate-200 dark:bg-slate-800">
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 circle">
         {location === null ? (
           <h1
@@ -178,7 +178,7 @@ const Sidebar = () => {
         </div>
       </div>
       <div
-        className=" text-white basis-1/2 border-t-2 bg-slate-200 dark:bg-slate-900"
+        className=" text-white basis-1/2 border-t-2 bg-slate-200 dark:bg-slate-800"
         style={{ borderColor: currentColor }}
       ></div>
     </div>

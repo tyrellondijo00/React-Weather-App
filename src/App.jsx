@@ -42,9 +42,13 @@ function App() {
   }, [screenSize]);
 
   return (
-    <div className={currentMode === "Dark" ? "dark" : ""}>
+    <div
+      className={
+        currentMode === "Dark" ? "dark bg-slate-900 h-screen" : "h-screen"
+      }
+    >
       <BrowserRouter>
-        <div className="flex relative dark:bg-slate-800">
+        <div className="flex relative">
           <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
             <TooltipComponent content="Settings" position="Top">
               <button
