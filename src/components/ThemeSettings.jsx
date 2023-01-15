@@ -12,7 +12,7 @@ const ThemeSettings = () => {
 
   return (
     <div className="bg-half-transparent w-screen fixed nav-item top-0 right-0">
-      <div className="float-right h-screen dark:text-gray-200 bg-white dark:[#484B52] w-400">
+      <div className="float-right h-screen dark:text-gray-200 bg-slate-200 dark:bg-slate-900 w-400">
         <div className="flex justify-between items-center p-4 ml-4">
           <p className="font-semibold text-xl">Settings</p>
           <button
@@ -67,7 +67,7 @@ const ThemeSettings = () => {
               <TooltipComponent
                 key={index}
                 content={item.name}
-                position="TopCenter"
+                position="BottomCenter"
               >
                 <div className="relative mt-2  cursor-pointer flex gap-5 items-center">
                   <button

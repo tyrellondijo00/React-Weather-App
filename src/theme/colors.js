@@ -5,22 +5,22 @@ export const themeColors = [
     },
     {
         name: 'green-theme',
-        color: '#03C9D7',
+        color: '#38FF14',
     },
     {
         name: 'purple-theme',
-        color: '#7352FF',
+        color: '#DF00FE',
     },
     {
         name: 'red-theme',
-        color: '#FF5C8E',
+        color: '#FF1818',
     },
     {
         name: 'indigo-theme',
         color: '#1E4DB7',
     },
     {
-        color: '#FB9678',
+        color: '#FF6700',
         name: 'orange-theme',
     },
 ];

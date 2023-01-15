@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useStateContext } from "./contexts/ContextProvider";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+import Weather from "./pages/Weather";
 import ThemeSettings from "./components/ThemeSettings";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
 import "./App.css";
+import "leaflet/dist/leaflet.css";
 
 function App() {
   const {
@@ -41,8 +43,8 @@ function App() {
 
   return (
     <div className={currentMode === "Dark" ? "dark" : ""}>
-      <Router>
-        <div className="flex relative dark:bg-main-dark-bg">
+      <BrowserRouter>
+        <div className="flex relative dark:bg-slate-800">
           <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
             <TooltipComponent content="Settings" position="Top">
               <button
@@ -71,12 +73,23 @@ function App() {
               activeMenu ? "md:ml-72" : "flex-2 md:ml-20"
             }`}
           >
-            <Navbar />
-          </div>
+            <div>
+              <Navbar />
+            </div>
 
-          <div>{themeSettings && <ThemeSettings />}</div>
+            <div>
+              {themeSettings && <ThemeSettings />}
+
+              <Routes>
+                {/* Dashboard */}
+                <Route path="/" element={<Weather />} />
+                <Route path="/weather" element={<Weather />} />
+                {/* Dashboard */}
+              </Routes>
+            </div>
+          </div>
         </div>
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }

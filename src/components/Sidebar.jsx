@@ -53,7 +53,7 @@ const Sidebar = () => {
   const { activeMenu, currentColor } = useStateContext();
 
   return (
-    <div className="h-screen flex flex-col relative bg-slate-100">
+    <div className="h-screen flex flex-col relative bg-slate-200 dark:bg-slate-900">
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 circle">
         {location === null ? (
           <h1
@@ -108,7 +108,7 @@ const Sidebar = () => {
           <div
             className={`flex items-center rounded-md py-2 ${
               activeMenu
-                ? "px-4 border border-black bg-slate-50"
+                ? "px-4 border border-black dark:border-white bg-slate-50 dark:bg-slate-600"
                 : "px-2 bg-transparent"
             }`}
           >
@@ -125,7 +125,7 @@ const Sidebar = () => {
               value={location || ""}
               onChange={(event) => setLocation(event.target.value)}
               onKeyPress={searchLocation}
-              className={`text-base bg-transparent w-full text-black focus:outline-none ${
+              className={`text-base bg-transparent w-full text-black dark:text-white focus:outline-none ${
                 !activeMenu && "hidden"
               }`}
             />
@@ -133,51 +133,54 @@ const Sidebar = () => {
         </div>
 
         <div
-          className={`flex flex-col country-city justify-center bg-gray-100 ${
+          className={`flex flex-col country-city justify-center ${
             activeMenu ? "px-4" : "px-0"
           }`}
         >
           <div
             className={` py-4 font-semi-bold  text-black text-4xl ${
               activeMenu
-                ? "border-black border-t border-l border-r rounded-t-md"
+                ? "border-black dark:border-white border-t border-l border-r rounded-t-xl"
                 : "border-0"
             }`}
             style={{ background: currentColor }}
           >
             <h1
-              className={`text-black city text-center ${
+              className={`text-white city text-center ${
                 !activeMenu && "hidden"
               }`}
             >
               {data.name}
             </h1>
-            <h1 className={`text-black ${activeMenu && "hidden"}`}>JBG</h1>
+            <h1 className={`text-white ${activeMenu && "hidden"}`}>JBG</h1>
           </div>
 
           <div
             className={`text-lg font-medium py-2 text-black flex justify-between ${
               activeMenu
-                ? "border-black border-b border-l border-r rounded-b-md text-right pr-5"
+                ? "border-black dark:border-white border-b border-l border-r rounded-b-xl text-right pr-5"
                 : "border-0 text-center"
             }`}
             style={{ background: currentColor }}
           >
-            <div className="cord pl-4">
+            <div className="cord pl-4 text-white">
               <h5 className="text-sm">long : {data.coord.lon}</h5>
               <h5 className="text-sm">lat : {data.coord.lat}</h5>
             </div>
             <div>
-              <h3 className={`text-black country ${!activeMenu && "hidden"}`}>
+              <h3 className={`text-white country ${!activeMenu && "hidden"}`}>
                 {data.sys.country}
               </h3>
 
-              <h3 className={`text-black ${activeMenu && "hidden"}`}>RSA</h3>
+              <h3 className={`text-white ${activeMenu && "hidden"}`}>RSA</h3>
             </div>
           </div>
         </div>
       </div>
-      <div className=" text-white basis-1/2 border-t-2 bg-slate-100"></div>
+      <div
+        className=" text-white basis-1/2 border-t-2 bg-slate-200 dark:bg-slate-900"
+        style={{ borderColor: currentColor }}
+      ></div>
     </div>
   );
 };
