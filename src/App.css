@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500;600;700;800&family=Gruppo&family=Megrim&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Overlock+SC&family=Oxanium:wght@200;300;400;500;600;700&family=Poiret+One&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Prosto+One&family=Unica+One&family=Wallpoet&family=Yatra+One&display=swap');
-/* .zagadat{
-  background: black;
-} */
+
+
 .city, .country, .cord{
   font-family: 'Oxanium', cursive;
 }
@@ -34,5 +33,20 @@
 .country-city{
   height: calc(100% - 135px);
 }
+
+.scrollable {
+  height: 50vh;
+  overflow-y: scroll;
+  scrollbar-width: none;
+    -ms-overflow-style: none;}
+  ::-webkit-scrollbar {
+    width: 0.2em;
+  }
+  ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #555;
+}
+
 
 

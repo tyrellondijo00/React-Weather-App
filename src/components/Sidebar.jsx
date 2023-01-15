@@ -5,13 +5,22 @@ import { WiDayRainWind } from "react-icons/wi";
 import { FaExpandAlt, FaSearch } from "react-icons/fa";
 // ICONS
 
+import { Link, NavLink } from "react-router-dom";
+import PerfectScrollbar from "react-perfect-scrollbar";
+
 // COMPONENTS
 import WeatherIcon from "./Icon";
 // COMPONENTS
 
+// DUMMY DATA
+import { links } from "../theme/colors";
+// DUMMY DATA
+
 // CONTEXT API
 import { useStateContext } from "../contexts/ContextProvider";
 // CONTEXT API
+
+import "react-perfect-scrollbar/dist/css/styles.css";
 
 import "../App.css";
 import axios from "axios";
@@ -50,7 +59,19 @@ const Sidebar = () => {
     }
   };
 
-  const { activeMenu, currentColor } = useStateContext();
+  const handleCloseSideBar = () => {
+    if (activeMenu && screenSize <= 900) {
+      setActiveMenu(false);
+    }
+  };
+
+  const { activeMenu, setActiveMenu, screenSize, currentColor } =
+    useStateContext();
+
+  const activeLink =
+    "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-white text-md m-2";
+  const normalLink =
+    "flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2";
 
   return (
     <div className="h-screen flex flex-col relative bg-slate-200 dark:bg-slate-800">
@@ -177,10 +198,56 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
+
       <div
-        className=" text-white basis-1/2 border-t-2 bg-slate-200 dark:bg-slate-800"
+        className=" text-white basis-1/2 border-t-2 bg-slate-200 dark:bg-slate-800 scrollable"
         style={{ borderColor: currentColor }}
-      ></div>
+      >
+        <PerfectScrollbar
+          direction="rtl"
+          minScrollbarLength={30}
+          wheelPropagation={true}
+        >
+          <div className="mt-12 ">
+            {links.map((item) => (
+              <div key={item.title}>
+                <p className="text-gray-400 m-3 mt-4 uppercase">{item.title}</p>
+                {item.links.map((link) => (
+                  <NavLink
+                    to={`/${link.name}`}
+                    key={link.name}
+                    onClick={handleCloseSideBar}
+                    style={({ isActive }) => ({
+                      backgroundColor: isActive ? currentColor : "",
+                    })}
+                    className={({ isActive }) =>
+                      isActive ? activeLink : normalLink
+                    }
+                  >
+                    {link.icon}
+                    <span className="capitalize">{link.name}</span>
+                  </NavLink>
+                ))}
+              </div>
+            ))}
+          </div>
+        </PerfectScrollbar>
+        <style>
+          {`
+          
+          .ps__rail-y {
+            right: 0 !important;
+            width: 0.2em !important;
+            background-color: #F5F5F5 !important;
+          }
+          .ps__thumb-y {
+            width: 0.2em !important;
+            background-color: ${currentColor} !important;
+            border-radius: 10px !important;
+          }
+        `}
+        </style>
+      </div>
     </div>
   );
 };

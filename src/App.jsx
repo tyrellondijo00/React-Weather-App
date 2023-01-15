@@ -1,15 +1,28 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useStateContext } from "./contexts/ContextProvider";
+
+// Components
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
+// Components
+
+// Pages
 import Weather from "./pages/Weather";
+import Clouds from "./pages/Maps/Clouds";
+import Precipitation from "./pages/Maps/Precipitation";
+import Sealevel from "./pages/Maps/Sealevel";
+import Temperature from "./pages/Maps/Temperature";
+import Wind from "./pages/Maps/Wind";
+// Pages
+
 import ThemeSettings from "./components/ThemeSettings";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
 import "./App.css";
 import "leaflet/dist/leaflet.css";
+import "react-perfect-scrollbar/dist/css/styles.css";
 
 function App() {
   const {
@@ -85,10 +98,18 @@ function App() {
               {themeSettings && <ThemeSettings />}
 
               <Routes>
-                {/* Dashboard */}
+                {/* Main Page */}
                 <Route path="/" element={<Weather />} />
                 <Route path="/weather" element={<Weather />} />
-                {/* Dashboard */}
+                {/* Main Page */}
+
+                {/* Weather Maps */}
+                <Route path="/clouds" element={<Clouds />} />
+                <Route path="/precipitation" element={<Precipitation />} />
+                <Route path="/sealevel" element={<Sealevel />} />
+                <Route path="/temperature" element={<Temperature />} />
+                <Route path="/wind" element={<Wind />} />
+                {/* Weather Maps */}
               </Routes>
             </div>
           </div>

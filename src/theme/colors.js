@@ -24,3 +24,41 @@ export const themeColors = [
         name: 'orange-theme',
     },
 ];
+
+export const links = [
+    {
+        title: 'Weather',
+        links: [
+            {
+                name: 'weather',
+                // icon: <FiShoppingBag />,
+            },
+        ],
+    },
+
+    {
+        title: 'Maps',
+        links: [
+            {
+                name: 'clouds',
+                // icon: <AiOutlineShoppingCart />,
+            },
+            {
+                name: 'precipitation',
+                // icon: <IoMdContacts />,
+            },
+            {
+                name: 'sealevel',
+                // icon: <RiContactsLine />,
+            },
+            {
+                name: 'temperature',
+                // icon: <RiContactsLine />,
+            },
+            {
+                name: 'wind',
+                // icon: <RiContactsLine />,
+            },
+        ],
+    },
+];
