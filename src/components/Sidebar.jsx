@@ -24,9 +24,11 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 
 import "../App.css";
 import axios from "axios";
+import SearchComp from "./Search";
 
 const Sidebar = () => {
   const [location, setLocation] = useState(null);
+  const [iconId, seticonId] = useState("");
 
   const [data, setData] = useState({
     main: {
@@ -45,19 +47,7 @@ const Sidebar = () => {
     },
   });
 
-  const [iconId, seticonId] = useState("");
-
   // const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=e9f46ddf13344ba6fe404b5323503639&units=metric`;
-
-  const searchLocation = (event) => {
-    if (event.key === "Enter") {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=e9f46ddf13344ba6fe404b5323503639&units=metric`;
-      axios.get(url).then((response) => {
-        setData({ ...data, ...response.data });
-        seticonId(response.data.weather[0].icon);
-      });
-    }
-  };
 
   const handleCloseSideBar = () => {
     if (activeMenu && screenSize <= 900) {
@@ -126,31 +116,15 @@ const Sidebar = () => {
             !activeMenu && "items-center"
           }`}
         >
-          <div
-            className={`flex items-center rounded-md py-2 ${
-              activeMenu
-                ? "px-4 border border-black dark:border-white bg-slate-50 dark:bg-slate-600"
-                : "px-2 bg-transparent"
-            }`}
-          >
-            <FaSearch
-              className={`block cursor-pointer float-left ${
-                activeMenu ? "mr-2 text-lg" : "mr-0 text-2xl"
-              }`}
-              style={{ color: currentColor }}
-            />
-
-            <input
-              type="text"
-              placeholder="Search"
-              value={location || ""}
-              onChange={(event) => setLocation(event.target.value)}
-              onKeyPress={searchLocation}
-              className={`text-base bg-transparent w-full text-black dark:text-white focus:outline-none ${
-                !activeMenu && "hidden"
-              }`}
-            />
-          </div>
+          <SearchComp
+            location={location}
+            activeMenu={activeMenu}
+            currentColor={currentColor}
+            setLocation={setLocation}
+            data={data}
+            setData={setData}
+            seticonId={seticonId}
+          />
         </div>
 
         <div
@@ -203,11 +177,7 @@ const Sidebar = () => {
         className=" text-white basis-1/2 border-t-2 bg-slate-200 dark:bg-slate-800 scrollable"
         style={{ borderColor: currentColor }}
       >
-        <PerfectScrollbar
-          direction="rtl"
-          minScrollbarLength={30}
-          wheelPropagation={true}
-        >
+        <PerfectScrollbar direction="rtl">
           <div className="mt-12 ">
             {links.map((item) => (
               <div key={item.title}>
